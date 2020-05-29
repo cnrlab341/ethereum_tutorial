@@ -1,4 +1,3 @@
-
 class account :
     def __init__(self, privateKey, address):
         self.privateKey = privateKey

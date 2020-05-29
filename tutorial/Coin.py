@@ -1,9 +1,13 @@
+import os, sys
+_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+sys.path.append(_PATH)
+
 from util import compile_contract, wait_contract_address, get_contract, transact_function, wait_event
 
 # deploy smart contract and return contract object
 def deploy_Coin_contract(w3, account):
 
-    contract_interface = compile_contract('./smartContract/Coin.sol', "Coin")
+    contract_interface = compile_contract(_PATH + '/smartContract/Coin.sol', "Coin")
     contract = w3.eth.contract(abi=contract_interface['abi'], bytecode=contract_interface['bin'])
     transaction = contract.constructor().buildTransaction({
         'nonce': w3.eth.getTransactionCount(account.address),
@@ -20,7 +24,8 @@ def deploy_Coin_contract(w3, account):
 # args = address receiver, uint256 amount
 def mint(w3, account, contract, receiver, amount) :
     transactor = contract.functions["mint"](receiver, amount)
-    transact_function(w3, account, transactor)
+    tx_hash = transact_function(w3, account, transactor)
+    w3.eth.waitForTransactionReceipt(tx_hash)
 
 # send
 # args = address receiver, uint256 amount
@@ -28,13 +33,12 @@ def send(w3, account, contract, receiver, amount) :
     transactor = contract.functions["send"](receiver, amount)
     tx_hash = transact_function(w3, account, transactor)
     result = wait_event(w3, contract, tx_hash, "Sent")
-    # return result[0]['args']['to'], result[0]['args']['value']
-    return result
+    return result[0]['args']['from'], result[0]['args']['to'], result[0]['args']['amount']
+
 
 # getBalance
 def get_balance(account, contract) :
     transactor = contract.functions["get_balance"]()
-    print(transactor)
-    print(contract.functions.get_balance())
-    a = transactor.call({'from' : account.address})
-    print(a)
+    result = transactor.call({'from' : account.address})
+
+    return result

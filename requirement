@@ -1,0 +1,23 @@
+# geth install
+https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu
+
+# git comit ethereum_tutorial
+https://github.com/cnrlab341/ethereum_tutorial
+
+# create genesis block
+> geth --datadir blockchain init genesis.json 
+
+# start geth
+> geth --datadir ./blockchain --rpc --rpccorsdomain '*' --rpcport 8545 --rpcaddr 127.0.0.1 --rpcapi "eth,net,web3,debug,miner" --nodiscover console
+
+# python3 version : 3.6
+# dependence : python3.6-pip, python3.6-dev
+
+# setup python venv
+> sudo apt-get install python3-venv
+> python3 -m venv venv
+> source ./venv/bin/activate
+
+# install pip lib
+> pip install web3
+> pip install py-solc-x

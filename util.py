@@ -1,11 +1,5 @@
-import os
-import random
-import hmac
-import json
-import time
-import hashlib
-import uuid
-import solcx
+import os, solcx, random, hmac, json, hashlib, uuid, time
+from solcx import get_solc_version, install_solc
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import scrypt
@@ -21,6 +15,7 @@ from eth_utils import (
     keccak,
     remove_0x_prefix
 )
+solc_version = 'v0.5.4'
 #
 # Version 3 creators
 #
@@ -278,6 +273,11 @@ def created_contract_address(w3, tx_hash):
     return tx_receipt['contractAddress']
 
 def compile_contract(path, name):
+    try :
+        get_solc_version()
+    except :
+        install_solc(solc_version)
+        print("install solc : {}".find(solc_version))
     compiled_contacts = solcx.compile_files([path])
     contract_interface = compiled_contacts['{}:{}'.format(path, name)]
     return contract_interface
