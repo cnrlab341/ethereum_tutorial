@@ -4,7 +4,7 @@ sys.path.append(_PATH)
 
 from web3 import Web3
 from util import extract_key_from_keyfile
-from ccount import account
+from account import account
 from Coin import deploy_Coin_contract
 
 # w3 = Web3(Web3.IPCProvider("./blockchain/geth.ipc"))
@@ -12,10 +12,11 @@ w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
 account_list = []
 password = ['coinbase', 'n1', 'n2']
 address = [
-    '0xf2147021ea7A3461a27d8f311F438f1e93BbEf53',
-    '0x86EB3b6133b30f84C664b23F5777a39295F030A4',
-    '0x8F5F709a079ABBf657DE960721593d0e3b0480Ae'
+    '0x2C749426ff936a1B522fFdc8dcBf9eb8d78b3D00',
+    '0x0697875dc0ae871809f049211d85b939b7B75A75',
+    '0xdB66F629495c5B1d17d28A35ccEd5ECB6F494BD3'
 ]
+
 for i in range(len(password)) :
     privKey = extract_key_from_keyfile(_PATH + '/keyFile/' + password[i] + '.json',
                                        password[i].encode())
