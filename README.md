@@ -1,6 +1,6 @@
 # Ethereum tutorial
  (requirement) provides a guide to installing geth, executing private network, and building a virtual environment in Python. 
-
+ If you want a detailed explanation, see Create ethereum private network.pdf in http://cnrl.gachon.ac.kr/research/seminar
 # Contents
 <ul>
   <li>1 create_account.py : Create Ethereum address</li>
