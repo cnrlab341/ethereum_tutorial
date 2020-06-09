@@ -25,7 +25,6 @@ for i in range(len(password)) :
 
 w3.geth.miner.setEtherbase(account_list[0].address)
 w3.geth.miner.start(1)
-time.sleep(15)
 
 contract = deploy_Coin_contract(w3, account_list[0])
 print("contract addresss : ", contract.address)

@@ -26,7 +26,6 @@ for i in range(len(password)) :
 
 w3.geth.miner.setEtherbase(account_list[0].address)
 w3.geth.miner.start(1)
-time.sleep(15)
 
 contract_interface = compile_contract('../smartContract/Coin.sol', "Coin")
 contract = get_contract(w3, contract_address, contract_interface['abi'])

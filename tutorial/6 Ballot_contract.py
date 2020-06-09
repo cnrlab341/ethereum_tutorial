@@ -24,7 +24,6 @@ for i in range(len(password)) :
 
 w3.geth.miner.setEtherbase(account_list[0].address)
 w3.geth.miner.start(1)
-time.sleep(15)
 
 proposal_node = [
     '0daDa006Be098D919433E05F15Fdb7d40daDa006Be098D919433E05F15Fdb7d4',

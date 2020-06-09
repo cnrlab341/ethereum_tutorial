@@ -24,6 +24,8 @@ for i in range(len(password)) :
 
 w3.geth.miner.setEtherbase(account_list[0].address)
 w3.geth.miner.start(1)
+
+# if coinbase balance isn't enough yet, wait enough time
 time.sleep(15)
 
 # send token to n1, n2
